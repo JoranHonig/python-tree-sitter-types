@@ -2,7 +2,12 @@ import click
 from pathlib import Path
 from astor import to_source
 from python_tree_sitter_types.node_types import nodes_from_json
-from python_tree_sitter_types.generation.transformer import build_class_for_type, imports, type_name_map, base_class
+from python_tree_sitter_types.generation.transformer import (
+    build_class_for_type,
+    imports,
+    type_name_map,
+    base_class,
+)
 
 
 @click.command()
@@ -20,12 +25,12 @@ def generate_types(type_file, target):
         click.echo(f"File {type_file} does not exist.")
         exit(1)
 
-    type_json = file.read_text(encoding='utf-8')
+    type_json = file.read_text(encoding="utf-8")
 
     nodes = nodes_from_json(type_json)
 
     target = Path(target)
-    with target.open('w') as f:
+    with target.open("w") as f:
         f.write(to_source(imports()))
         f.write(to_source(base_class()))
         for node in nodes:

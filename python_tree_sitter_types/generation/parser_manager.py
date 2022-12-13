@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def install_parser(repo_url: str, parser_name: str):
-    """ Install a parser from a git repo
+    """Install a parser from a git repo
 
     Example:
         install_parser("https://github.com/JoranHonig/tree-sitter-cairo.git", "tree-sitter-cairo")
@@ -31,7 +31,7 @@ def install_parser(repo_url: str, parser_name: str):
 
 
 def load_language(parser_name, language):
-    """ Load a language that's installed
+    """Load a language that's installed
 
     Example:
         install_parser("https://github.com/JoranHonig/tree-sitter-cairo.git", "tree-sitter-cairo")
