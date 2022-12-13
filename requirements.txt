@@ -4,3 +4,4 @@ inflection
 astor
 GitPython
 pydantic
+black

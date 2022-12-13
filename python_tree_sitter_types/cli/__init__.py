@@ -8,7 +8,7 @@ from python_tree_sitter_types.generation.transformer import (
     type_name_map,
     base_class,
 )
-
+from black import format_str, FileMode
 
 @click.command()
 @click.argument("type-file")
@@ -31,12 +31,13 @@ def generate_types(type_file, target):
 
     target = Path(target)
     with target.open("w") as f:
-        f.write(to_source(imports()))
-        f.write(to_source(base_class()))
+        f.write(format_str(to_source(imports()), mode=FileMode()))
+        f.write(format_str(to_source(base_class()), mode=FileMode()))
         for node in nodes:
             if node.named:
-                f.write(to_source(build_class_for_type(node)))
-        f.write(to_source(type_name_map(nodes)))
+                f.write(format_str(to_source(build_class_for_type(node)), mode=FileMode()))
+        f.write(format_str(to_source(type_name_map(nodes)), mode=FileMode()))
+
 
 
 if __name__ == "__main__":
