@@ -1,0 +1,6 @@
+click
+tree_sitter
+inflection
+astor
+GitPython
+pydantic
