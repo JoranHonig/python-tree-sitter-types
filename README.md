@@ -14,7 +14,7 @@ This library provides two functions.
 
 As a CLI you can use it to generate the types for your tree-sitter grammar:
 ```bash
-tree-sitter-types node-types.json your_language_types.py
+python-tree-sitter-types node-types.json your_language_types.py
 ```
 
 You can then package these and distribute them on pypi, following tree-sitters naming standard `tree-sitter-yourlang`.
