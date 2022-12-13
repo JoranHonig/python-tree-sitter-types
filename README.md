@@ -1,4 +1,5 @@
 # 🔧 python-tree-sitter-types
+[![Package Version](https://img.shields.io/pypi/v/tree-sitter-types)](https://pypi.org/project/tree-sitter-types/)
 
 This repository contains a python typed interface generation tool for tree-sitter grammars.
 
