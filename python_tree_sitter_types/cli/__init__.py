@@ -2,13 +2,14 @@ import click
 from pathlib import Path
 from astor import to_source
 from python_tree_sitter_types.node_types import nodes_from_json
-from python_tree_sitter_types.generation.transformer import (
+from python_tree_sitter_types.generation.code_generator import (
     build_class_for_type,
     imports,
     type_name_map,
     base_class,
 )
 from black import format_str, FileMode
+
 
 @click.command()
 @click.argument("type-file")
