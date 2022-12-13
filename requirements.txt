@@ -5,3 +5,4 @@ astor
 GitPython
 pydantic
 black
+toolz
