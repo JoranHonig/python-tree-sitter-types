@@ -132,3 +132,11 @@ class TreeSitterNode:
         return self.base_node.text
     """
     ).body[0]
+
+
+def import_library():
+    return parse(
+        """
+from tree_sitter_types.parser import load_language, install_parser, parse_node
+    """
+    ).body[0]
