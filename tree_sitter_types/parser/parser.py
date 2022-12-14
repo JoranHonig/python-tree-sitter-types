@@ -54,7 +54,9 @@ def parse_node(wrappers, node):
         return new_node
 
     for field_name in wrappers.get(type_name).field_names:
-        field_children = list(map(inner_parse_node, node.children_by_field_name(field_name)))
+        field_children = list(
+            map(inner_parse_node, node.children_by_field_name(field_name))
+        )
         fields[field_name] = field_children
         all_children += field_children or []
 
@@ -74,6 +76,7 @@ def parse_node(wrappers, node):
     new_node.base_node = node
 
     return new_node
+
 
 # TODO: allow users to specify literals
 # TODO: sanity check input for field names "children" and "field_names" and "base_node"

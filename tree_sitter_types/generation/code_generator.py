@@ -1,7 +1,7 @@
 from ast import *
 import ast
 from typing import Union
-from python_tree_sitter_types.node_types import *
+from tree_sitter_types.node_types import *
 from inflection import camelize
 
 

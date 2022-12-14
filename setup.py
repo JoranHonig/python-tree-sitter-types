@@ -29,7 +29,7 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "python-tree-sitter-types=python_tree_sitter_types.cli:generate_types",
+            "python-tree-sitter-types=tree_sitter_types.cli:generate_types",
         ]
     },
 )
