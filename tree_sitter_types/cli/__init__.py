@@ -1,10 +1,11 @@
 import click
 from pathlib import Path
 from astor import to_source
-from python_tree_sitter_types.node_types import nodes_from_json
-from python_tree_sitter_types.generation.code_generator import (
+from tree_sitter_types.node_types import nodes_from_json
+from tree_sitter_types.generation.code_generator import (
     build_class_for_type,
     imports,
+    import_library,
     type_name_map,
     base_class,
 )
@@ -31,14 +32,17 @@ def generate_types(type_file, target):
     nodes = nodes_from_json(type_json)
 
     target = Path(target)
-    with target.open("w") as f:
-        f.write(format_str(to_source(imports()), mode=FileMode()))
-        f.write(format_str(to_source(base_class()), mode=FileMode()))
-        for node in nodes:
-            if node.named:
-                f.write(format_str(to_source(build_class_for_type(node)), mode=FileMode()))
-        f.write(format_str(to_source(type_name_map(nodes)), mode=FileMode()))
 
+    file = [
+        to_source(imports()),
+        to_source(import_library()),
+        to_source(base_class()),
+    ] + [to_source(build_class_for_type(node)) for node in nodes if node.named] + [
+        to_source(type_name_map(nodes))
+    ]
+
+    with target.open("w") as f:
+        f.write(format_str("\n".join(file), mode=FileMode()))
 
 
 if __name__ == "__main__":
