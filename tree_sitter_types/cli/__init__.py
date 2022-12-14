@@ -33,7 +33,7 @@ def generate_types(type_file, target):
 
     target = Path(target)
 
-    file = [
+    contents = [
         to_source(imports()),
         to_source(import_library()),
         to_source(base_class()),
@@ -42,7 +42,8 @@ def generate_types(type_file, target):
     ]
 
     with target.open("w") as f:
-        f.write(format_str("\n".join(file), mode=FileMode()))
+        f.write("\n".join(contents))
+        # f.write(format_str("\n".join(contents), mode=FileMode()))
 
 
 if __name__ == "__main__":
