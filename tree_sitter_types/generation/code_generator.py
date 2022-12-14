@@ -53,6 +53,8 @@ def type_annotation_from_field_child(
 
 
 def from_field(name: str, field: FieldSpecification) -> AnnAssign:
+    if name in ["from", "else"]:
+        name = f"_{name}"
     type_annotation = type_annotation_from_field_child(field)
     return AnnAssign(
         target=Name(id=name, ctx=Store()), annotation=type_annotation, simple=1
@@ -61,6 +63,8 @@ def from_field(name: str, field: FieldSpecification) -> AnnAssign:
 
 def build_class_for_type(node: NodeType) -> ClassDef:
     name = node.type
+    if camelize(name) in ["True", "False"]:
+        name += "Bool"
     fields = node.fields or dict()
     children = node.children
     return ClassDef(
@@ -139,4 +143,12 @@ def import_library():
         """
 from tree_sitter_types.parser import load_language, install_parser, parse_node
     """
+    ).body[0]
+
+
+def documentation():
+    return parse(
+"""
+# This file is auto generated
+"""
     ).body[0]
